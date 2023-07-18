@@ -1,9 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { Icons, NextButton } from './components';
+import { Icons } from './components';
 import { ButtonBase } from '@mui/material';
-import { useFormContext } from 'react-hook-form';
-import { animated, useSpring, config } from '@react-spring/web';
 
 const StyledHeader = styled.div`
   font-size: 30px;
@@ -76,7 +74,7 @@ const StyledButton = styled(ButtonBase)<{ margin?: string }>`
 
 const LinkContainer = styled.div`
   color: #101010;
-  font-family: Lato;
+  font-family: 'Lato-Solace', 'Lato – Solace', 'Lato', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
