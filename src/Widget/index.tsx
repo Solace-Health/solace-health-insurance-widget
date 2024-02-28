@@ -92,13 +92,6 @@ const SearchWidget = () => {
             pattern={FormatType.Email}
             label="Email"
           />
-          <Form.Text
-            name={FormDataFields.Phone}
-            formOptions={{ required: true }}
-            format={FormatType.Phone}
-            pattern={FormatType.Phone}
-            label="Phone Number"
-          />
           <Form.RadioGroup
             name={FormDataFields.InsurancePath}
             label={`${
