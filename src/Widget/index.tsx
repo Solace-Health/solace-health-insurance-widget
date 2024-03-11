@@ -61,11 +61,6 @@ const SearchWidget = () => {
 
   return (
     <Container>
-      <Flex style={{ marginBottom: 20 }}>
-        <Typography.Body>
-          Submit your information to Instantly see if you qualify
-        </Typography.Body>
-      </Flex>
       <Form.Container onSubmit={onHandleSubmit} formMethods={formMethods}>
         <Flex gap={16} vertical>
           <Form.RadioGroup
@@ -100,7 +95,7 @@ const SearchWidget = () => {
             options={insuranceOptions}
             formOptions={{ required: true }}
           />
-          <SubmitButton isSubmitting={isSubmitting} />
+          <SubmitButton isSubmitting={isSubmitting} label="Get Started" />
         </Flex>
       </Form.Container>
     </Container>
