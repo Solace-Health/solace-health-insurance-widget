@@ -41,7 +41,6 @@ const SearchWidget = () => {
 
   const onHandleSubmit = (values: ProspectPayload) => {
     setIsSubmitting(true);
-    // track(EventTypes.HERE_FOR_SELECTED, { value: values[FormDataFields.HereFor] });
     post<Prospect>({
       path: "/api/prospects",
       body: {
@@ -56,6 +55,8 @@ const SearchWidget = () => {
       });
       const redirect = `${process.env.FUNNEL_URL}/newpatient2/2?${formQuery}`;
       window.location.href = redirect;
+    }).finally(() => {
+      setIsSubmitting(false);
     });
   };
 
@@ -86,6 +87,13 @@ const SearchWidget = () => {
             formOptions={{ required: true }}
             pattern={FormatType.Email}
             label="Email"
+          />
+          <Form.Text
+            name={FormDataFields.Phone}
+            formOptions={{ required: true }}
+            format={FormatType.Phone}
+            pattern={FormatType.Phone}
+            label="Phone Number"
           />
           <Form.RadioGroup
             name={FormDataFields.InsurancePath}
