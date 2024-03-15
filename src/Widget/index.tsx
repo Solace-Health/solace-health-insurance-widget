@@ -20,7 +20,7 @@ const SearchWidget = () => {
   const formMethods = useForm();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const hereForSelf =
-    formMethods.watch(FormDataFields.HereFor) === HereFor.SELF;
+    formMethods.watch(FormDataFields.HereFor) !== HereFor.LOVED_ONE;
 
   const hereForOptions = [
     { label: "Myself", value: HereFor.SELF },
@@ -47,17 +47,20 @@ const SearchWidget = () => {
         ...(removeNullValues(values) as ProspectPayload),
         payload: {
           [FormDataFields.InsurancePath]: values[FormDataFields.InsurancePath],
+          [FormDataFields.PatientDOB]: values[FormDataFields.PatientDOB],
         },
       },
-    }).then((data: Prospect) => {
-      const formQuery = new URLSearchParams({
-        p_id: data.id,
+    })
+      .then((data: Prospect) => {
+        const formQuery = new URLSearchParams({
+          p_id: data.id,
+        });
+        const redirect = `${process.env.FUNNEL_URL}/newpatient2/2?${formQuery}`;
+        window.location.href = redirect;
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-      const redirect = `${process.env.FUNNEL_URL}/newpatient2/2?${formQuery}`;
-      window.location.href = redirect;
-    }).finally(() => {
-      setIsSubmitting(false);
-    });
   };
 
   return (
@@ -74,12 +77,12 @@ const SearchWidget = () => {
             <Form.Text
               name={FormDataFields.FirstName}
               formOptions={{ required: true }}
-              label="First Name"
+              label={`${!hereForSelf ? "Patient's" : ""} First Name`}
             />
             <Form.Text
               name={FormDataFields.LastName}
               formOptions={{ required: true }}
-              label="Last Name"
+              label={`${!hereForSelf ? "Patient's" : ""} Last Name`}
             />
           </Flex>
           <Form.Text
@@ -88,17 +91,18 @@ const SearchWidget = () => {
             pattern={FormatType.Email}
             label="Email"
           />
-          <Form.Text
-            name={FormDataFields.Phone}
-            formOptions={{ required: true }}
-            format={FormatType.Phone}
-            pattern={FormatType.Phone}
-            label="Phone Number"
+          <Form.DateDropdown
+            name={FormDataFields.PatientDOB}
+            label={`${!hereForSelf ? "Patient's " : ""} Date of Birth`}
+            formOptions={{
+              required: { message: "This field is required", value: true },
+            }}
+            containerStyle={{ marginBottom: 0 }}
           />
           <Form.RadioGroup
             name={FormDataFields.InsurancePath}
             label={`${
-              hereForSelf ? "Do you" : "Does your loved one"
+              hereForSelf ? "Do you" : "Does this person"
             } have Medicare?`}
             options={insuranceOptions}
             formOptions={{ required: true }}
