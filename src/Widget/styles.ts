@@ -9,6 +9,10 @@ export const Container = styled.div`
   border-radius: 20px;
   padding: 38px 40px;
   overflow: hidden;
+
+  header {
+    color: rgb(16, 16, 16);
+  }
 `;
 
 export const SubmitButton = styled(Form.Submit)`
