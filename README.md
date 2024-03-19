@@ -21,7 +21,7 @@ npm run build
 ```
 
 ### Releasing
-
-1. Create a release in Github for next patch version.
-2. Update the version reference of the script in Webflow.
-3. Publish the site
+1. Ensure that you run `npm run build` on your branch before merging into develop/main
+2. Create a release in Github for next patch version.
+3. Update the version reference of the script in Webflow.
+4. Publish the site
