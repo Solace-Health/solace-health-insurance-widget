@@ -110,3 +110,7 @@ export type Prospect<Include = unknown> = {
   is_here_for_self: boolean;
   is_here_for_loved_one: boolean;
 } & Include;
+
+export enum EventTypes {
+  HERE_FOR_SELECTED = "HERE_FOR_SELECTED",
+}

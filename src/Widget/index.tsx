@@ -6,15 +6,11 @@ import {
   FormDataFields,
   HereFor,
   InsurancePaths,
+  EventTypes,
 } from "../types";
 import { post } from "../utils/api";
 import { Container, SubmitButton } from "./styles";
-
-declare global {
-  interface Window {
-    analytics: any;
-  }
-}
+import { track } from "../utils/analytics";
 
 const SearchWidget = () => {
   const formMethods = useForm();
@@ -40,6 +36,9 @@ const SearchWidget = () => {
       .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
 
   const onHandleSubmit = (values: ProspectPayload) => {
+    track(EventTypes.HERE_FOR_SELECTED, {
+      value: values[FormDataFields.HereFor],
+    });
     setIsSubmitting(true);
     post<Prospect>({
       path: "/api/prospects",
