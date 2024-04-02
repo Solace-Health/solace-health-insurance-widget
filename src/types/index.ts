@@ -30,6 +30,7 @@ export enum FormDataFields {
   Medigap = "medigap",
   // Page 10
   InsuranceId = "insurance_id",
+  DualEligible = "dual_eligible",
   MemberId = "member_id",
   PatientDOB = "patient_dob",
   PatientSex = "patient_sex",
@@ -113,4 +114,7 @@ export type Prospect<Include = unknown> = {
 
 export enum EventTypes {
   HERE_FOR_SELECTED = "HERE_FOR_SELECTED",
+  FUNNEL_ENTRY = "FUNNEL_ENTRY",
+  INSURANCE_TYPE_SELECTED = "INSURANCE_TYPE_SELECTED",
+  WAITLIST_EMAIL_SUBMITTED = "WAITLIST_EMAIL_SUBMITTED",
 }

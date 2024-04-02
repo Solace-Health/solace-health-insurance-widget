@@ -4,7 +4,7 @@ import Widget from "./Widget";
 import { SolaceThemeProvider } from "@solace-health/ui";
 import { ThemeProvider } from "@emotion/react";
 
-const root = ReactDOM.createRoot(document.getElementById("solaceEntryWidget"));
+const root = ReactDOM.createRoot(document.getElementById("solaceFunnelWidget"));
 export const theme = {
   colors: {
     primary: "#1D4339",
