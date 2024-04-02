@@ -20,6 +20,7 @@ export type InsuranceCompany = {
 export const AdditionalInfo = () => {
   const { getValues, watch } = useFormContext();
   const formData = getValues();
+  const [initData, setInitData] = React.useState(formData);
   const isHereForLovedOne =
     formData[FormDataFields.HereFor] === HereFor.LOVED_ONE;
   const [companies, setCompanies] = useState<InsuranceCompany[]>([]);
@@ -34,6 +35,7 @@ export const AdditionalInfo = () => {
 
   useEffect(() => {
     getInsuranceCompanies();
+    setInitData(formData);
   }, []);
 
   const insuranceCompanyOptions: { label: string; value: string }[] =
@@ -48,7 +50,7 @@ export const AdditionalInfo = () => {
   });
 
   const isMedicaid =
-    formData[FormDataFields.InsurancePath] === InsurancePaths.Medicaid;
+    initData[FormDataFields.InsurancePath] === InsurancePaths.Medicaid;
   const isDual = watch(FormDataFields.DualEligible) === Option.Yes;
 
   const dualOptions = [
