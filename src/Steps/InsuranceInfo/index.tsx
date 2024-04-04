@@ -3,6 +3,7 @@ import { Flex, Form, Icons, styled, useFormContext } from "@solace-health/ui";
 import * as React from "react";
 import { FormDataFields, HereFor, InsurancePaths } from "../../types";
 import { NextButton } from "../../Shared/NextButton";
+import { getCookie, Cookie } from "../../utils/cookie";
 
 export const FooterLink = styled.a`
   color: var(--Sherwood-Evening-Sea, #285e50);
@@ -17,6 +18,7 @@ export const FooterLink = styled.a`
 `;
 
 export const InsuranceInfo = () => {
+  const prospectId = getCookie(Cookie.ProspectId);
   const { getValues } = useFormContext();
   const formData = getValues();
   const isHereForLovedOne =
@@ -52,7 +54,7 @@ export const InsuranceInfo = () => {
 
       <>
         {!markedWithMedicare && (
-          <FooterLink href={`${process.env.FUNNEL_URL}/5`} target="_blank">
+          <FooterLink href={`${process.env.FUNNEL_URL}/5?p_id=${prospectId}`} target="_blank">
             I will be paying out-of-pocket{" "}
             <Icons.Arrow color="#285e50" size={18} />
           </FooterLink>
