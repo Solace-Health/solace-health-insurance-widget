@@ -52,7 +52,7 @@ export const InsuranceInfo = () => {
 
       <>
         {!markedWithMedicare && (
-          <FooterLink href="/5">
+          <FooterLink href={`${process.env.FUNNEL_URL}/5`} target="_blank">
             I will be paying out-of-pocket{" "}
             <Icons.Arrow color="#285e50" size={18} />
           </FooterLink>
